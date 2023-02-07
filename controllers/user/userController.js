@@ -53,8 +53,8 @@ const loginUser = asyncHandler(async(req,res) =>{
 
    if(user && (await bcrypt.compare(password, user.password)))
    {
-       res.cookie('token',generateToken(user._id),{ maxAge: 30 * 24 * 60 * 60 * 1000,httpOnly:true})
-       res.send( {token: generateToken(user._id)})
+     /*  res.cookie('token',generateToken(user._id),{ maxAge: 30 * 24 * 60 * 60 * 1000,httpOnly:true})*/
+       res.status(200).send( {token: generateToken(user._id)})
    }
    else{
      res.status(400)

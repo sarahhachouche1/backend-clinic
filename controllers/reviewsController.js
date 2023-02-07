@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Reviews = require ('../model/reviewsModel');
-const multer = require("multer")
+const multer = require("multer");
 const path = require('path');
 
 
@@ -18,13 +18,18 @@ const storage = multer.diskStorage({
 // @route     POST /reviews/add/
 // @access    Private/Admin
  const addReview = asyncHandler(async(req,res)=>{
-        const newReview =  new Reviews({
+       const newReview =  new Reviews({
                name: req.body.name,
                message:req.body.message,
                logo: req.file.path
          })
+        
           newReview.save();
-          res.send('successfuly uploaded')
+          console.log("heyyyy",newReview)
+          res.send(newReview)
+         
+        
+          
  });
 
 
@@ -34,7 +39,6 @@ const storage = multer.diskStorage({
 // @access    Private/Admin
 const getReviews = asyncHandler(async(req,res)=>{
     const reviews = await Reviews.find()
-    console.log(reviews)
     res.status(200).json(reviews)
 });
 

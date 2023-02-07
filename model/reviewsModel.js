@@ -1,3 +1,4 @@
+const { object, string } = require('@hapi/joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -16,9 +17,11 @@ const ReviewsSchema = new Schema({
     },
     logo: {
         type: String,
-        required: true
+      
     },
-  
-});
+   
+},
+{timestamps:true}
+);
 
 module.exports = mongoose.model('reviews',ReviewsSchema)
