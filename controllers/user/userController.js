@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const generateToken =require('../../utils/generateToken')
 const bcrypt = require('bcryptjs')
 
+
 //@desc Register new user
 //@route POST /user/adduser
 //@acces Public
