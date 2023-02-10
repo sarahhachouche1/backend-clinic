@@ -18,7 +18,7 @@ const {
 
 router.get('/read' ,getReviews)
 router.post('/add' ,protect,admin,uploadImage.single('logo'), addReview)
-router.put('/update/:id',protect,admin,uploadImage.single('logo') ,updateReview)
+router.patch('/update/:id',protect,admin,updateReview)
 router.delete('/delete/:id',protect,admin,deleteReview )
 
 

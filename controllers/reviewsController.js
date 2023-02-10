@@ -51,24 +51,17 @@ const getReviews = asyncHandler(async(req,res)=>{
 
 
 // @desc      update review
-// @route     PUT /reviews/update/:id/
+// @route     PATCH /reviews/update/:id/
 // @access    Private/Admin
 const updateReview =  asyncHandler(async(req,res)=>{
     const review = await Reviews.findById(req.params.id)
-
     if(!review){
        res.status(400)
        throw new Error('Review not found')
     }
-    const{
-      name,
-      message,
-    }=req.body;
-   const logo=req.file.path
-   if(name) review.name=name;
-   if(message) review.message=message;
-   if(logo) review.logo=logo;
-   const updateReview = await review.save();
+     message = req.body.message;
+    if(message) review.message=message;
+    const updateReview = await review.save();
    res.json(updateReview)
 });
 
