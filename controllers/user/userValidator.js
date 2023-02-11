@@ -3,16 +3,15 @@ const { nextTick } = require('async');
 const generateToken =require('../../utils/generateToken');
 
 const validation = Joi.object({
-    name: Joi.string().alphanum().min(3).max(25).trim(true).required(),
+    name: Joi.string().alphanum().min(3).max(25).trim(true),
     email: Joi.string().when('role', {
         is: ['admin', 'superAdmin'],
-        then: Joi.string().regex(/^[a-z0-9]+@codi.tech$/).required()
+        then: Joi.string().regex(/^[a-z0-9]+@codi.tech$/),
       }),
     password:Joi.string()
     .min(8)
     .max(32)
-    .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])/)
-    .required(),
+    .regex(/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])/),
     confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
     role: Joi.string().default('user').valid('admin', 'superAdmin', 'user'),
   

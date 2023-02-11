@@ -4,10 +4,6 @@ const bcrypt = require('bcryptjs')
 /*const roleEnum = ('admin', 'superadmin', 'user', 'guest')*/
 
 const userSchema = new Schema({
-  name: { 
-    type: String, 
-    required: [true , 'Please add your name']
-},
   email: { 
     type: String, 
     required : [true , 'Please add an email'],
@@ -25,7 +21,7 @@ const userSchema = new Schema({
   {timestamps:true}
 );
 
-//fire a function after doc saved to db
+//fire a function before doc saved to db
 userSchema.pre('save', async function(next){
   const salt = await bcrypt.genSalt(10)
   this.password = await bcrypt.hash(this.password,salt)   
